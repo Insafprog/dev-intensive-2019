@@ -3,7 +3,7 @@ package ru.skillbranch.devintensive.models
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
-class User(
+data class User(
     val id:String,
     var firstName:String?,
     var lastName:String?,
