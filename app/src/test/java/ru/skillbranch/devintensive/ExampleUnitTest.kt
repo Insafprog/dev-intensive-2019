@@ -8,6 +8,7 @@ import ru.skillbranch.devintensive.extensions.format
 import ru.skillbranch.devintensive.extensions.TimeUnits
 import ru.skillbranch.devintensive.extensions.toUserView
 import ru.skillbranch.devintensive.models.*
+import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
 /**
@@ -53,12 +54,20 @@ class ExampleUnitTest {
         val user2 = user1.copy(lastVisit = Date())
         val user3 = user1.copy(lastVisit = Date().add(-2, TimeUnits.SECOND))
         val user4 = user1.copy(lastName = "Cena", lastVisit = Date().add(2, TimeUnits.HOUR))
+        val user5 = User.makeUser("")
+        val user6 = User.makeUser("Gena")
+        val user7 = User.makeUser(" ")
+        val user8 = User.makeUser(null)
 
         println("""
             ${user1.lastVisit?.format()}
             ${user2.lastVisit?.format()}
             ${user3.lastVisit?.format()}
             ${user4.lastVisit?.format()}
+            ${user5.lastVisit?.format()}
+            ${user6.lastVisit?.format()}
+            ${user7.lastVisit?.format()}
+            ${user8.lastVisit?.format()}
         """.trimIndent())
     }
 
@@ -81,5 +90,16 @@ class ExampleUnitTest {
 
         println(txtMessage.formatMessage())
         println(imgMessage.formatMessage())
+    }
+
+    @Test
+    fun test_toInitials() {
+        println("""
+            ${Utils.toInitials("john", "doe")}
+            ${Utils.toInitials("john", null)}
+            ${Utils.toInitials(null, null)}
+            ${Utils.toInitials(" ", "")}
+            ${Utils.toInitials("", "doe")}
+        """.trimIndent())
     }
 }
