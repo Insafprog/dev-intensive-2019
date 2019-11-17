@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d("M_MainActivity", "onCreate")
 
 //        benderImage = findViewById(R.id.iv_bender)
         benderImage = iv_bender
@@ -34,8 +33,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
         val question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
-
         benderObj = Bender(Bender.Status.valueOf(status), Bender.Question.valueOf(question))
+
+        Log.d("M_MainActivity", "onCreate $status $question")
+
+        val(r, g, b) = benderObj.status.color
+        benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
+
         textTxt.text = benderObj.askQuestion()
         sendBtn.setOnClickListener(this)
     }
