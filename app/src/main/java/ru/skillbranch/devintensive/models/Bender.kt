@@ -60,5 +60,4 @@ class Bender(var status: Status = Status.NORMAL,var question: Question = Questio
 
         abstract fun nextQuestion(): Question
         }
-    }
 }
